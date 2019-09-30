@@ -11,6 +11,7 @@ public class ZombieMove : MonoBehaviour {
     }
 
     void Update() {
+        transform.LookAt(_target.transform, _target.transform.up);
         if (transform.position == _target.transform.position) {
             Destroy(gameObject);
             Debug.Log("Zombie reached EOL");
