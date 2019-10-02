@@ -7,40 +7,47 @@ public class Shooting : MonoBehaviour {
     public int score = 0;
     public GameObject Splatter;
     public float crosshairFractionScale = 0.125f;
-
     public Font scoreFont;
 
-    void OnGUI() {
-        // Render crosshairs
-        // -----------------
-        float xMin = (Screen.width / 2) - ((crosshairImage.width * crosshairFractionScale) / 2);
-        float yMin = (Screen.height / 2) - ((crosshairImage.height * crosshairFractionScale) / 2);
-        GUI.DrawTexture(
-            new Rect(
-                xMin, 
-                yMin, 
-                crosshairImage.width * crosshairFractionScale, 
-                crosshairImage.height * crosshairFractionScale), 
-            crosshairImage
-        );
+    private GameObject _target;
 
-        // Render score
-        // ------------
-        GUIStyle style = new GUIStyle();
-        style.font = scoreFont;
-        style.fontSize = 100;
-        style.alignment = TextAnchor.UpperCenter;
-        style.normal.textColor = Color.white;
-        GUI.Label(
-            new Rect(
-                Screen.width/2 - 50,
-                100,
-                100,
-                20
-            ),
-            "Score: " + score.ToString(),
-            style
-        );
+    void Awake() {
+        _target = GameObject.FindGameObjectWithTag("Destination");
+    }
+
+    void OnGUI() {
+        if (!_target.GetComponent<Destination>().gameOver) {
+            // Render crosshairs
+            // -----------------
+            float xMin = (Screen.width / 2) - ((crosshairImage.width * crosshairFractionScale) / 2);
+            float yMin = (Screen.height / 2) - ((crosshairImage.height * crosshairFractionScale) / 2);
+            GUI.DrawTexture(
+                new Rect(
+                    xMin, 
+                    yMin, 
+                    crosshairImage.width * crosshairFractionScale, 
+                    crosshairImage.height * crosshairFractionScale), 
+                crosshairImage
+            );
+
+            // Render score
+            // ------------
+            GUIStyle style = new GUIStyle();
+            style.font = scoreFont;
+            style.fontSize = 100;
+            style.alignment = TextAnchor.UpperCenter;
+            style.normal.textColor = Color.white;
+            GUI.Label(
+                new Rect(
+                    Screen.width/2 - 50,
+                    100,
+                    100,
+                    20
+                ),
+                "Score: " + score.ToString(),
+                style
+            );
+        }
     }
     void Update() {
         if (Input.GetMouseButtonDown(0)) {

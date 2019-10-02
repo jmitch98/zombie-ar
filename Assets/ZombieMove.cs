@@ -6,6 +6,7 @@ public class ZombieMove : MonoBehaviour {
     public float MoveSpeed = 3f;
     public GameObject Splatter;
     private GameObject _target;
+    private bool _canAttack = true;
 
     void Awake() {
         _target = GameObject.FindGameObjectWithTag("Destination");
@@ -13,16 +14,25 @@ public class ZombieMove : MonoBehaviour {
 
     void Update() {
         transform.LookAt(_target.transform, _target.transform.up);
-        if (transform.position == _target.transform.position) {
-            Destroy(gameObject);
-            Debug.Log("Zombie reached EOL");
-        }
+        if (Vector3.Distance(_target.transform.position, transform.position) <= 0.27f) {
+            if (_canAttack) Attack();
 
-        transform.position = Vector3.MoveTowards(
-            transform.position, 
-            _target.transform.position, 
-            MoveSpeed * Time.deltaTime
-        );
+        }
+        else {
+            transform.position = Vector3.MoveTowards(
+                transform.position, 
+                _target.transform.position, 
+                MoveSpeed * Time.deltaTime
+            );
+        }
+    }
+
+    void OnGUI() {
+
+    }
+
+    public void Attack() {
+        _target.transform.GetComponent<Destination>().Damage();
     }
 
     public void Die() {
