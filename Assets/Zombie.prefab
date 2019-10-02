@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4144277543468237699}
   - component: {fileID: 4144277541859687027}
   - component: {fileID: 4144277541859687024}
-  - component: {fileID: 4144277541859687025}
+  - component: {fileID: 7989384975586416985}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -82,9 +82,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5382147, y: 1.1582079, z: 0.4285593}
-  m_Center: {x: 0.00009429455, y: 0.49671507, z: -0.029829502}
---- !u!114 &4144277541859687025
+  m_Size: {x: 0.998096, y: 1.1582079, z: 0.75835717}
+  m_Center: {x: 0.015173554, y: 0.49671507, z: -0.07095331}
+--- !u!114 &7989384975586416985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 0.1
+  Splatter: {fileID: 819392863856449530, guid: 19cda621e2923da439d944542936d7a0, type: 3}
 --- !u!1001 &603998672660618422
 PrefabInstance:
   m_ObjectHideFlags: 0
